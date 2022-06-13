@@ -1,19 +1,30 @@
 # UPCI<?php
+<?php
+
 require 'conexion.php';
-session_start();
 
-$usuario = $_POST['usuario'];
-$contrasena = $_POST['contrasena'];
+$usuario 	= $_POST["usuario"];
+$contrasena = $_POST["contrasena"];
+$rol 	= $_POST["rol"];
 
-$q = "SELECT COUNT(*) as contar from usuario where usuario = '$usuario' and contrasena = '$contrasena'";
-$consulta = mysqli_query($conexion, $q);
-$array = mysqli_fetch_array($consulta);
 
-if ($array ['contar']>0) {
-	$_SESSION['username'] = $usuario;
-	header("location: prin.php");
-}else{
-	echo"<script type=\"text/javascript\">alert('Datos incorrectos. Vuelva a intentar'); window.location='index.php';</script>";
+$queryusuario = mysqli_query($conn,"SELECT * FROM login WHERE usuario ='$usuario' and contrasena = '$contrasena' and rol = '$rol'");
+$nr = mysqli_num_rows($queryusuario);  
+	
+if ($nr == 1 )  
+	{ 
+		if($rol=="Usuario")
+			{	
+				header("location: prueba2.html");
+			}
+		else if ($rol=="Admin")
+			{
+				header("location: prueba1.html");
+			}
+	}
+else
+{
+	echo "<script> alert('Usuario, contraseña o rol incorrecto.');window.location= 'index.php' </script>";
 }
 
 
