@@ -1,4 +1,5 @@
 # UPCIbody{
+body{
 	background: url(bl.jpg);
 	<img src="bl.jpg" style="width: 1500px; height: 800px;">
 font family: calibri;
@@ -72,6 +73,7 @@ font-size: 14px;
 font-weight: bold;
 margin-left: 5px;
 }
+
 @media screen and (max-width: 688px)
 {
 #from-login{
